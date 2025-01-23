@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Monitoring Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div id="logo">
+        <img src="http://localhost:3000/images/sunware-technologies-logo-xl.png" 
+         alt="Sunware Technologies Logo" 
+         style="width: 150px; height: 120px;">
+    </div>
+    <h1>Energy Monitoring Dashboard</h1>
+
+    <!-- Energy Monitoring Section -->
+    <h2>Live Energy Monitor</h2>
+    <div id="energy-monitoring">
+        <div class="column">
+            <p>Voltage: <span id="voltage">Loading...</span></p>
+            <p>Current: <span id="current">Loading...</span></p>
+            <p>Power: <span id="power">Loading...</span></p>
+        </div>
+        <div class="column">
+            <p>Frequency: <span id="frequency">Loading...</span></p>
+            <p>Power Factor: <span id="power_factor">Loading...</span></p>
+            <p>Energy Consumption (kWh): <span id="kwh">Loading...</span></p>
+        </div>
+    </div>
+    <div id="data-filter">
+        <h2>Filter Energy Data</h2>
+        <label for="filter_mode">Filter Mode:</label>
+        <select id="filter_mode" onchange="toggleTimeInputs()">
+            <option value="month">More than one day</option>
+            <option value="date_time">Specific Date & Time</option>
+        </select>
+        <div id="date-inputs">
+            <label for="from_date">From Date:</label>
+            <input type="date" id="from_date">
+            <label for="to_date">To Date:</label>
+            <input type="date" id="to_date">
+        </div>
+        <div id="time-inputs" style="display: none;">
+            <label for="filter_date">Date:</label>
+            <input type="date" id="filter_date">
+            <label for="filter_start_time">Start Time:</label>
+            <input type="time" id="filter_start_time">
+            <label for="filter_end_time">End Time:</label>
+            <input type="time" id="filter_end_time">
+        </div>
+        <button onclick="showGraphs()">Show Graphs</button>
+        <button onclick="resetGraphs()">Reset Graphs</button>
+        <button onclick="downloadExcel()">Download Excel</button>
+    </div>
+
+    <!-- Graph Display Section -->
+    <div id="graph-display">
+        <h2>Energy Monitoring Graphs</h2>
+        <div>
+            <h3>Voltage (V)</h3>
+            <canvas id="voltage-graph"></canvas>
+        </div>
+        <div>
+            <h3>Current (A)</h3>
+            <canvas id="current-graph"></canvas>
+        </div>
+        <div>
+            <h3>Power (W)</h3>
+            <canvas id="power-graph"></canvas>
+        </div>
+        <div>
+            <h3>Power Factor</h3>
+            <canvas id="power-factor-graph"></canvas>
+        </div>
+        <div>
+            <h3>Energy (kWh)</h3>
+            <canvas id="energy-graph"></canvas>
+        </div>
+    </div>
+
+    <!-- Data Results Section -->
+    <div id="data-display">
+        <h2>Data Results</h2>
+        <pre id="data-results"></pre>
+    </div>
+</body>
+</html>
+
